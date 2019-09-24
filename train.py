@@ -11,16 +11,16 @@ IMAGE_SIZE = (152, 152)
 CHANNELS = 3
 NUM_CLASSES = 8631
 
-TPU_WORKER = 'grpc://10.0.201.2:8470'
+TPU_WORKER = 'grpc://10.0.0.1:8470'
 
 BATCH_SIZE = 1024
 LEARN_RATE = 0.01 * (BATCH_SIZE / 128)
 MOMENTUM = 0.9
 EPOCHS = 15
 
-CL_PATH = 'gs://shrill-anstett-us/VGGFace2_classlabels.txt'
-DATASET_PATH = 'gs://shrill-anstett-us/VGGFace2_final_tfrecs'
-TB_PATH = 'gs://shrill-anstett-us/vggface2_deepface_dropout2_tb'
+CL_PATH = 'gs://bucket-name/VGGFace2_classlabels.txt'
+DATASET_PATH = 'gs://bucket-name/VGGFace2_tfrecs'
+TB_PATH = 'gs://bucket-name/vggface2_deepface_tensorboard'
 
 # Initialise the TPU
 # and create the required
