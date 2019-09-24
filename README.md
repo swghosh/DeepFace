@@ -6,4 +6,6 @@ The proposed CNN architecture in the paper have been implemented using Keras ([t
 
 ![DeepFace (CVPR14) Network Architecture](https://storage.googleapis.com/swgghosh/deep-face-architecture.png)
 
+This project and necessary research was supported by the [TensorFlow Research Cloud (TFRC)](https://www.tensorflow.org/tfrc). We're grateful to Google for providing us all the [GCP](https://cloud.google.com) resources to make million scale machine learning models training possible using the state of the art AI hardware like [Cloud TPUs](https://cloud.google.com/tpu/).
+
 Pre-trained weights on the VGGFace2 dataset are available here.
