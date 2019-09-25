@@ -80,7 +80,7 @@ def create_deepface():
         lc2d_layer(filters=16, kernel_size=5, name='L6'),
         keras.layers.Flatten(name='F0'),
         dense_layer(units=4096, activation=keras.activations.relu, name='F7'),
-        keras.layers.Dropout(0.3, name='D0'),
+        keras.layers.Dropout(0.4, name='D0'),
         dense_layer(units=NUM_CLASSES, activation=keras.activations.softmax, name='F8')
     ], name='DeepFace')
     deepface.summary()
