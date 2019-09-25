@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 
-# We'll use tf.keras for
+"""
+We'll use tf.keras for
 # training the Deep Face network
+"""
 import tensorflow as tf
 from tensorflow import keras
 
-# Certain constants are to 
-# be defined
+"""
+Certain constants are to 
+be defined
+"""
 IMAGE_SIZE = (152, 152)
 CHANNELS = 3
 NUM_CLASSES = 8631
@@ -22,18 +26,22 @@ CL_PATH = 'gs://bucket-name/VGGFace2_classlabels.txt'
 DATASET_PATH = 'gs://bucket-name/VGGFace2_tfrecs'
 TB_PATH = 'gs://bucket-name/vggface2_deepface_tensorboard'
 
-# Initialise the TPU
-# and create the required
-# tf.distribute.Strategy
+"""
+Initialise the TPU
+and create the required
+tf.distribute.Strategy
+"""
 keras.backend.clear_session()
 
 tpu_cluster = tf.contrib.cluster_resolver.TPUClusterResolver(tpu=TPU_WORKER)
 tf.contrib.distribute.initialize_tpu_system(tpu_cluster)
 strategy = tf.contrib.distribute.TPUStrategy(tpu_cluster)
 
-# Create a function that will
-# return a created network
-# DeepFace
+"""
+Create a function that will
+return a created network
+DeepFace
+"""
 def create_deepface():
     """
     Construct certain functions 
@@ -88,8 +96,10 @@ def create_deepface():
     deepface.compile(optimizer=sgd_opt, loss=cce_loss, metrics=['accuracy'])
     return deepface
 
-# Prepare the data pipeline
-# for train, val images
+"""
+Prepare the data pipeline
+for train, val images
+"""
 import dataset
 train, val = dataset.get_train_test_dataset(CL_PATH, DATASET_PATH, IMAGE_SIZE, BATCH_SIZE)
 # these are essential values that have to be set
@@ -98,10 +108,12 @@ train_samples, val_samples = 2307424, 25893
 dataset.SHUFFLE_BUFFER = train_samples
 assert train.num_classes == val.num_classes == NUM_CLASSES
 
-# Add some tf.keras.callbacks.Callback(s)
-# to enhance op(s)
-# like TensorBoard visualisation
-# and ReduceLR
+"""
+Add some tf.keras.callbacks.Callback(s)
+to enhance op(s)
+like TensorBoard visualisation
+and ReduceLR
+"""
 reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1,
     patience=1, min_lr=0.0001, verbose=1)
 tensorboard = keras.callbacks.TensorBoard(TB_PATH)
@@ -119,8 +131,10 @@ train_history = deepface.fit(train.data, steps_per_epoch=train_samples // BATCH_
 
 deepface.save('model.h5')
 
-# Let's visualise how the
-# training went
+"""
+Let's visualise how the
+training went
+"""
 from matplotlib import pyplot as plt
 def save_plots():
     """
@@ -155,4 +169,3 @@ def save_plots():
     plt.savefig('epcoch_wise_loss_acc.png')
 
 save_plots()
-
