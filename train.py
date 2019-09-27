@@ -58,22 +58,28 @@ like TensorBoard visualisation
 and ReduceLR
 """
 reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1,
-    patience=1, min_lr=0.0001, verbose=1)
+    patience=1, min_lr=0.0001, verbose=1) # mandatory step in training, as specified in paper
 tensorboard = keras.callbacks.TensorBoard(TB_PATH)
 checkpoints = keras.callbacks.ModelCheckpoint('weights.{epoch:02d}_{val_acc:.4f}.hdf5',
     monitor='val_acc', save_weights_only=True)
 
 cbs = [reduce_lr, checkpoints, tensorboard]
 
-from deepface import create_deepface
+"""
+Construct the DeepFace
+network with TPU strategy
+"""
+from deepface import deepface
 with strategy.scope():
-    deepface = create_deepface(IMAGE_SIZE, CHANNELS, NUM_CLASSES, LEARN_RATE, MOMENTUM)
+    model = deepface.create_deepface(IMAGE_SIZE, CHANNELS, NUM_CLASSES, LEARN_RATE, MOMENTUM)
 
-train_history = deepface.fit(train.data, steps_per_epoch=train_samples // BATCH_SIZE + 1,
+"""
+Train the model
+"""
+train_history = model.fit(train.data, steps_per_epoch=train_samples // BATCH_SIZE + 1,
     validation_data=val.data, validation_steps=val_samples // BATCH_SIZE + 1,
     callbacks=cbs, epochs=EPOCHS)
-
-deepface.save('model.h5')
+model.save('model.h5')
 
 """
 Let's visualise how the
@@ -82,8 +88,7 @@ training went
 from matplotlib import pyplot as plt
 def save_plots():
     """
-    Show and save two
-    plot(s) 
+    Save two plot(s) 
     1. Accuracy vs Epochs
     2. Loss vs Epochs
     """
