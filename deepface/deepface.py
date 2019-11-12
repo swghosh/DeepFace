@@ -13,7 +13,7 @@ def create_deepface(image_size=IMAGE_SIZE, channels=CHANNELS, num_classes=NUM_CL
     Deep CNN architecture primarily for Face Recognition,
     Face Verification and Face Representation (feature extraction) purposes
     "DeepFace: Closing the Gap to Human-Level Performance in Face Verification"
-    CNN architecture proposed by Taigman et. al. (CVPR 2014)
+    CNN architecture proposed by Taigman et al. (CVPR 2014)
     """
 
     wt_init = keras.initializers.RandomNormal(mean=0, stddev=0.01)
