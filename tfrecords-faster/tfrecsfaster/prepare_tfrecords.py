@@ -3,9 +3,12 @@
 import os
 WORKERS = os.cpu_count()
 print("Using %d workers." % WORKERS)
-
-dataset_path = '/home/serveradmin/Documents/ajinkya/output/test'
-tfrecs_path = '/home/serveradmin/Documents/ajinkya/output/tfrecords/test'
+# folder structure
+# tfrecords
+#  - train
+#  - test
+dataset_path = 'path_to/testimages' #testimages contains all the testing images
+tfrecs_path = '/path_to/tfrecords/test' #'tfrecords' is a folder name. 'test' is another folder inside tfrecord.  
 shard_size = 12000
 
 n_samples = None
