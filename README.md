@@ -8,6 +8,8 @@ Implementation of this paper have been done using Keras ([tf.keras](https://www.
 
 
 # Steps to train on a GPU
+
+### Gathering Data
 Make your account on ```http://zeus.robots.ox.ac.uk/vgg_face2/login/``` once you login goto ```http://zeus.robots.ox.ac.uk/vgg_face2/``` and download all the files mentioned there 
 
 1. Train Data_v1. 	36G. MD5: 88813c6b15de58afc8fa75ea83361d7f.
@@ -20,5 +22,8 @@ If are using a server a quick way to get this data is hijack it using cookie, fo
 ```
 curl --header "cookie: " http://www.robots.ox.ac.uk/~vgg/data/vgg_face2/meta/test_list.txt --output /home/Documents/ajinkya/output/test_images_v1.txt
 ```
+### Generating supporting files
 
-After you have all this data run ```python3 generate_train_labels.py``` make sure you enter the path of 'train' folder that you downloaded in previous step. 
+After you have all this data run ```python3 generate_train_labels.py``` make sure you enter the path of 'train' folder that you downloaded in previous step. This code will generate VGGFace2-class_labels_train.txt file which you need in next steps
+
+
