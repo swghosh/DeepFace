@@ -28,7 +28,29 @@ curl --header "cookie: " http://www.robots.ox.ac.uk/~vgg/data/vgg_face2/meta/tes
 After you have all this data run ```python3 generate_train_labels.py``` make sure you enter the path of 'train' folder that you downloaded in previous step. This code will generate VGGFace2-class_labels_train.txt file which you need in next steps
 
 ### Create tf records
-Goto ```prepare_tfrecords.py``` file from tfrecords-faster directory and run it make sure of the paths and generate tfrecords for both train and test
+Goto ```prepare_tfrecords.py``` file from tfrecords-faster directory (https://github.com/ajinkya933/DeepFace/tree/master/tfrecords-faster/tfrecsfaster) and run it make sure of the paths and generate tfrecords for both train and test
 
+## Running train
+Make sure your paths are correct on  train_on_gpu script:
 
+```
+Certain constants are to
+be defined
+"""
+IMAGE_SIZE = (152, 152)
+CHANNELS = 3
+NUM_CLASSES = 8631
 
+#TPU_WORKER = 'grpc://10.0.0.1:8470'
+
+BATCH_SIZE = 8
+LEARN_RATE = 0.01 * (BATCH_SIZE / 128)
+MOMENTUM = 0.9
+EPOCHS = 15
+
+CL_PATH = './VGGFace2-class_labels_train.txt'
+DATASET_PATH = './tfrecords'
+TB_PATH = '/home/serveradmin/Documents/ajinkya/output/tmp'
+
+```
+and run ```python train_on_GPU.py``
