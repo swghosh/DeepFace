@@ -15,6 +15,7 @@ Make your account on ```http://zeus.robots.ox.ac.uk/vgg_face2/login/``` once you
 3. Train_Images_v1. 	The training image list, e.g., 'n000002/0001_01.jpg'.
 4. Test_Images_v1. 	The test image list.
 
+
 If are using a server a quick way to get this data is hijack it using cookie, for example:
 ```
 curl --header "cookie: " http://www.robots.ox.ac.uk/~vgg/data/vgg_face2/meta/test_list.txt --output /home/Documents/ajinkya/output/test_images_v1.txt
