@@ -31,7 +31,7 @@ After you have all this data run ```python3 generate_train_labels.py``` make sur
 Goto ```prepare_tfrecords.py``` file from tfrecords-faster directory (https://github.com/ajinkya933/DeepFace/tree/master/tfrecords-faster/tfrecsfaster) and run it make sure of the paths and generate tfrecords for both train and test
 
 ## Running train
-Make sure your paths are correct on  train_on_gpu script:
+Make sure your paths are correct on  train_on_gpu.py script:
 
 ```
 Certain constants are to
@@ -53,4 +53,4 @@ DATASET_PATH = './tfrecords'
 TB_PATH = '/home/serveradmin/Documents/ajinkya/output/tmp'
 
 ```
-and run ```python train_on_GPU.py``
+and run ```python train_on_gpu.py```
