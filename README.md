@@ -21,3 +21,4 @@ If are using a server a quick way to get this data is hijack it using cookie, fo
 curl --header "cookie: " http://www.robots.ox.ac.uk/~vgg/data/vgg_face2/meta/test_list.txt --output /home/Documents/ajinkya/output/test_images_v1.txt
 ```
 
+After you have all this data run ```python3 generate_train_labels.py``` make sure you enter the path of 'train' folder that you downloaded in previous step. 
