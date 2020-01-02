@@ -15,16 +15,15 @@ IMAGE_SIZE = (152, 152)
 CHANNELS = 3
 NUM_CLASSES = 8631
 
-#TPU_WORKER = 'grpc://10.0.0.1:8470'
-
 BATCH_SIZE = 8
 LEARN_RATE = 0.01 * (BATCH_SIZE / 128)
 MOMENTUM = 0.9
 EPOCHS = 15
 
 CL_PATH = '/path_to/train_images_v1.txt'
-DATASET_PATH = '/path_to/tfrecords'  # Note that the folder 'tfrecords' contains two sub folders :train, test
+# Note that the folder 'tfrecords' contains two sub folders :train, test
 # train (contains training tfrecords), test (contains testing tfrecords)
+DATASET_PATH = '/path_to/tfrecords'  
 TB_PATH = '/path_to/output/tensorboard_logs_folder'
 
 """
@@ -42,7 +41,7 @@ keras.backend.clear_session()
 Prepare the data pipeline
 for train, val images
 """
-from deepface import dataset
+from ..deepface import dataset
 train, val = dataset.get_train_test_dataset(CL_PATH, DATASET_PATH, IMAGE_SIZE, BATCH_SIZE)
 # these are essential values that have to be set
 # in order to determine the right number of steps per epoch
@@ -72,7 +71,7 @@ cbs = [reduce_lr, checkpoints, tensorboard]
 Construct the DeepFace
 network with TPU strategy
 """
-from deepface import deepface
+from ..deepface import deepface
 #with strategy.scope():
 #    model = deepface.create_deepface(IMAGE_SIZE, CHANNELS, NUM_CLASSES, LEARN_RATE, MOMENTUM)
 
