@@ -1,3 +1,8 @@
+# specify a directory where training images
+# are present, the directory should contain
+# images of each person as seperately
+# sub folders (name of each subfolder is a class label)
+
 TRAIN_PATH = '/path/to/dataset/train'
 
 import glob, os
