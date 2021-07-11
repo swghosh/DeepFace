@@ -115,6 +115,6 @@ def save_plots():
     plt.xlabel('Epochs')
     plt.title('Loss')
 
-    plt.savefig('epcoch_wise_loss_acc.png')
+    plt.savefig('epoch_wise_loss_acc.png')
 
 save_plots()
